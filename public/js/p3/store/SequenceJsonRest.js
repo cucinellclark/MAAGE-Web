@@ -15,6 +15,7 @@ define([
       // we have to make the default query exclude the actual sequences themselves or it is way too slow
       var sel = '&select(' + this.defaultFieldList.join(',') + ')';
       query += sel;
+
       // console.log("Query: ", query);
       return Store.prototype.query.apply(this, [query, opts]);
     }

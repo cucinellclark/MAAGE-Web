@@ -13,6 +13,12 @@ router.get('/about', function (req, res) {
   res.render('pages/about', { title: 'PATRIC', request: req, response: res });
 });
 
+/* GET advisory_board page. */
+router.get('/advisory_board', function (req, res) {
+  req.applicationModule = 'p3/app/p3app';
+  res.render('pages/advisory_board', { title: 'PATRIC', request: req, response: res });
+});
+
 /* GET announcements page. */
 router.get('/announcements', function (req, res) {
   req.applicationModule = 'p3/app/p3app';
