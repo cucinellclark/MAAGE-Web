@@ -854,6 +854,10 @@
   grid-gap: 20px;
 }
 
+#bv-brc-page .teams .adv-board-member {
+  margin-top: 6px;
+}
+
 #bv-brc-page .teams img,
 #bv-brc-page .teams svg {
   height: 50px;
