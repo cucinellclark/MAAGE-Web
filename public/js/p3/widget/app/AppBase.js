@@ -148,6 +148,7 @@ define([
     },
 
     startup: function () {
+      debugger;
       if (this._started) {
         return;
       }

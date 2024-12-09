@@ -2,19 +2,17 @@ define([
   'dojo/_base/declare', 'dojo/_base/lang',
   'dojo/dom-construct', 'dojo/request',
   './TabViewerBase', 'dijit/Dialog',
-  '../GenomeOverview', '../AMRPanelGridContainer', '../Phylogeny',
-  '../GenomeBrowser', '../CircularViewerContainer', '../SequenceGridContainer',
-  '../FeatureGridContainer', '../ProteinGridContainer', '../ProteinStructureGridContainer', '../SpecialtyGeneGridContainer', '../ProteinFeaturesGridContainer', '../ProteinFamiliesContainer',
-  '../PathwaysContainer', '../SubSystemsContainer', '../ExperimentsContainer', '../InteractionContainer',
+  '../GenomeOverview',
+  '../GenomeBrowser', '../SequenceGridContainer',
+  '../FeatureGridContainer',
   '../../util/PathJoin'
 ], function (
   declare, lang,
   domConstruct, xhr,
   TabViewerBase, Dialog,
-  GenomeOverview, AMRPanelGridContainer, Phylogeny,
-  GenomeBrowser, CircularViewerContainer, SequenceGridContainer,
-  FeatureGridContainer, ProteinGridContainer, ProteinStructureGridContainer, SpecialtyGeneGridContainer, ProteinFeaturesGridContainer, ProteinFamiliesContainer,
-  PathwaysContainer, SubSystemsContainer, ExperimentsContainer, InteractionsContainer,
+  GenomeOverview,
+  GenomeBrowser, SequenceGridContainer,
+  FeatureGridContainer,
   PathJoin
 ) {
   return declare([TabViewerBase], {
@@ -221,14 +219,6 @@ define([
 
       this._set('genome', genome);
 
-      // check host genomes. remove the circular viewer tab if it's a host genome
-      if (genome && genome.taxon_lineage_ids) {
-        // console.log("this genome: ", genome);
-        if (genome.taxon_lineage_ids.length > 1 && genome.taxon_lineage_ids[1] == '2759') {
-          this.viewer.removeChild(this.circular);
-        }
-      }
-
       if (genome && genome.taxon_lineage_names && genome.taxon_lineage_names.includes('Viruses') && this.context === 'bacteria') {
         this.set('context', 'virus')
         this.changeToVirusContext();
@@ -310,36 +300,15 @@ define([
         // state: this.state
       });
 
-      this.phylogeny = new Phylogeny({
-        title: 'Phylogeny',
-        id: this.viewer.id + '_phylogeny'
-      });
-
       this.sequences = new SequenceGridContainer({
         title: 'Sequences',
         id: this.viewer.id + '_sequences',
         state: lang.mixin({}, this.state, { search: (this.genome_id ? '?eq(genome_id,' + this.genome_id + ')' : '?ne(genome_id,*)' ) })
       });
 
-      this.amr = new AMRPanelGridContainer({
-        title: 'AMR Phenotypes',
-        id: this.viewer.id + '_amr'
-      });
-
       this.features = new FeatureGridContainer({
         title: 'Features',
         id: this.viewer.id + '_features'
-      });
-
-      this.proteins = new ProteinGridContainer({
-        title: 'Proteins',
-        id: this.viewer.id + '_proteins',
-        disabled: false
-      });
-
-      this.structures = new ProteinStructureGridContainer({
-        title: 'Protein Structures',
-        id: this.viewer.id + '_structures'
       });
 
       this.browser = new GenomeBrowser({
@@ -349,68 +318,11 @@ define([
         tooltip: 'The "Browser" tab shows genome sequence and genomic features using linear genome browser'
       });
 
-      this.circular = new CircularViewerContainer({
-        title: 'Circular Viewer',
-        id: this.viewer.id + '_circular',
-        state: lang.mixin({}, this.state)
-      });
-
-      this.specialtyGenes = new SpecialtyGeneGridContainer({
-        title: 'Specialty Genes',
-        id: this.viewer.id + '_specialtyGenes',
-        state: lang.mixin({}, this.state, { search: (this.genome_id ? '?eq(genome_id,' + this.genome_id + ')' : '?ne(genome_id,*)' ) })
-      });
-
-      this.proteinFeatures = new ProteinFeaturesGridContainer({
-        title: 'Domains and Motifs',
-        id: this.viewer.id + '_proteinFeatures'
-      });
-
-      this.pathways = new PathwaysContainer({
-        apiServer: this.apiServiceUrl,
-        title: 'Pathways',
-        id: this.viewer.id + '_pathways'
-      });
-
-      this.subsystems = new SubSystemsContainer({
-        title: 'Subsystems',
-        id: this.viewer.id + '_subsystems'
-      });
-
-      this.proteinFamilies = new ProteinFamiliesContainer({
-        title: 'Protein Families',
-        id: this.viewer.id + '_proteinFamilies',
-        state: this.state
-      });
-
-      this.experiments = new ExperimentsContainer({
-        title: 'Experiments',
-        id: this.viewer.id + '_experiments',
-        state: this.state
-      });
-
-      this.interactions = new InteractionsContainer({
-        title: 'Interactions',
-        id: this.viewer.id + '_interactions',
-        state: this.state
-      });
 
       this.viewer.addChild(this.overview);
-      this.viewer.addChild(this.amr);
-      this.viewer.addChild(this.phylogeny);
       this.viewer.addChild(this.browser);
-      this.viewer.addChild(this.circular);
       this.viewer.addChild(this.sequences);
       this.viewer.addChild(this.features);
-      this.viewer.addChild(this.proteins);
-      this.viewer.addChild(this.structures);
-      this.viewer.addChild(this.specialtyGenes);
-      this.viewer.addChild(this.proteinFeatures);
-      this.viewer.addChild(this.proteinFamilies);
-      this.viewer.addChild(this.pathways);
-      this.viewer.addChild(this.subsystems);
-      this.viewer.addChild(this.experiments);
-      this.viewer.addChild(this.interactions);
     }
   });
 });

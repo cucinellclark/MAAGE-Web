@@ -439,7 +439,7 @@ define([
       }
       /* istanbul ignore else */
       if (this.serviceAPI) {
-        // console.log("Setup API Service @ ", this.serviceAPI);
+        console.log("Setup API Service @ ", this.serviceAPI);
         this.api.service = RPC(this.serviceAPI, this.authorizationToken || '');
       }
       /* istanbul ignore else */

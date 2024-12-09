@@ -135,7 +135,7 @@ define([
     getValues: function () {
       var assembly_values = {};
       var values = this.inherited(arguments);
-
+      debugger;
       // Generic JSON parameters are added to assembly values in this function
       assembly_values = this.checkBaseParameters(values, assembly_values);
 

@@ -30,7 +30,7 @@
         <div id="bv-brc-header-container">
             <div class="nav-logo">
                 <a class="nav-logo-link" href="/">
-                    <img class="bv-brc-logo" src="/patric/images/maage/maage_logo2.png" alt="BV-BRC Logo" style="height: 28px;"/>
+                    <img class="bv-brc-logo" src="/patric/images/ldkb_logo.png" alt="BV-BRC Logo" style="height: 28px;width:100px"/>
                     <!-- Remove Version Number
                     <span><i style="color: #ffffff; font-size: 12px; padding-left: 2px;"><%- request.package.version %><%- request.applicationOptions.appLabel || " " %></i></i></span>
                     -->
@@ -39,149 +39,27 @@
             </div>
 
             <div style="vertical-align: top; min-width: 435px; flex: 1">
+
                 <div class="topMenuButton showOnLoad dijitHidden" data-dojo-type="dijit/form/DropDownButton">
-                    <span>ORGANISMS</span>
+                    <span>DATA</span>
                     <div data-dojo-type="p3/widget/TooltipDialog">
-                        <div style="vertical-align: top;width:180px;display:inline-block;margin-right: 5px;">
-                            <div class="menuHeader">Bacterial Pathogens</div>
-                            <div class="menuItems">
-                                <div>
-                                    <span class="menuItemM">
-                                        <a class="" href="/view/Taxonomy/2?in(genus,(Campylobacter,Listeria,Escherichia,Salmonella))" title="Overview page for all Bacteria genomes">All Bacteria</a>
-                                    </span>
-                                </div>
-                                <% for (var i = 0; i < servicesMiddle;i++){ %>
-                                <div>
-                                    <span class="menuItemM">
-                                        <a class="" href="<%- services[i].href %>" title="<%- services[i].name %> overview"><%- services[i].name %></a>
-                                    </span>
-                                    <span class="menuItemM">
-                                        <% if (services[servicesMiddle + i]) { %>
-                                        <a class="" title="<%- services[servicesMiddle + i].name %> overview"
-                                           href="<%- services[servicesMiddle + i].href %>"><%- services[servicesMiddle + i].name %></a>
-                                        <% } %>
-                                    </span>
-                                </div>
-                                <% } %>
-                            </div>
-                        </div>
-
-                        <div style="vertical-align: top;width:180px;display:inline-block;margin-right: 5px;">
-
-                            <div class="menuHeader">Featured Viruses</div>
-
-                            <div class="menuItems">
-                                <div>
-                                    <span class="menuItemM">
-                                        <a class="" href="/view/Taxonomy/10239?in(taxon_id,(11320,10244,2697049))" title="Overview page for all Viruses">All Viruses</a>
-                                    </span>
-                                </div>
-                                <% for (var i = 0; i < featuredVirusMiddle;i++){ %>
-                                <div>
-                                    <span class="menuItemM">
-                                        <a class="" href="<%- featured_virus[i].href %>" title="<%- featured_virus[i].name %> overview"><%- featured_virus[i].name %></a>
-                                    </span>
-                                    <span class="menuItemM">
-                                        <% if (featured_virus[featuredVirusMiddle + i]) { %>
-                                        <a class="" title="<%- featured_virus[featuredVirusMiddle + i].name %> overview"
-                                           href="<%- featured_virus[featuredVirusMiddle + i].href %>"><%- featured_virus[featuredVirusMiddle + i].name %></a>
-                                        <% } %>
-                                    </span>
-                                </div>
-                                <% } %>
-                            </div>
-
-                        </div>
-
-                        <div style="vertical-align: top;width:180px;display:inline-block;margin-right: 5px;">
-                            <div class="menuHeader">Metagenomes</div>
-                            <div class="menuItems">
-                                <div>
-                                    <span class="menuItemM">
-                                        <a class="" href="" title="Overview page for all metagenomes">All Metagenomes</a>
-                                    </span>
-                                </div>
-                                <% for (var i = 0; i < metagenomesMiddle;i++){ %>
-                                <div>
-                                    <span class="menuItemM">
-                                        <a class="" href="<%- metagenomes[i].href %>" title="<%- metagenomes[i].name %> overview"><%- metagenomes[i].name %></a>
-                                    </span>
-                                    <span class="menuItemM">
-                                        <% if (metagenomes[metagenomesMiddle + i]) { %>
-                                        <a class="" title="<%- metagenomes[metagenomesMiddle + i].name %> overview"
-                                           href="<%- metagenomes[metagenomesMiddle + i].href %>"><%- metagenomes[metagenomesMiddle + i].name %></a>
-                                        <% } %>
-                                    </span>
-                                </div>
-                                <% } %>
-                            </div>
-                        </div>
+                        <div><a class="navigationLink" href="/view/Genome/9606.33">Genome</a></div>
+                        <div><a class="navigationLink" href="/view/Genome/9606.33#view_tab=features">Features</a></div>
                     </div>
                 </div>
 
+                <!-- SERVICES -->
                 <div class="topMenuButton showOnLoad dijitHidden" data-dojo-type="dijit/form/DropDownButton">
-                    <span>SEARCHES</span>
-
-                    <div data-dojo-type="p3/widget/TooltipDialog">
-                        <div class="menuHeader" style="padding-right: 20px;">Advanced Search</div>
-                        <div><a class="navigationLink" href="/searches/TaxaSearch">Taxa</a></div>
-                        <div><a class="navigationLink" href="/searches/GenomeSearch">Genomes</a></div>
-                        <div><a class="navigationLink" href="/searches/GenomicFeatureSearch">Features</a></div>
-                        <div><a class="navigationLink" href="/searches/ProteinSearch">Proteins</a></div>
-                        <div><a class="navigationLink" href="/searches/SpecialtyGeneSearch">Specialty Genes</a></div>
-                        <div><a class="navigationLink" href="/searches/PathwaySearch">Pathways</a></div>
-                        <div><a class="navigationLink" href="/searches/SubsystemSearch">Subsystems</a></div>
-                    </div>
-                </div>
-
-                <div class="topMenuButton showOnLoad dijitHidden" data-dojo-type="dijit/form/DropDownButton">
-                    <span>TOOLS &amp; SERVICES</span>
-
+                    <span>SERVICES</span>
                     <div data-dojo-type="p3/widget/TooltipDialog">
                         <div>
                             <div style="vertical-align: top;width:250px;margin-right:5px;display:inline-block">
-                                <div class="menuHeader">Genomics</div>
+                                <!-- <div class="menuHeader">Pipelines</div> -->
                                 <div class="menuItems">
-                                    <a class="navigationLink" href="/app/Assembly2">Genome Assembly</span></a>
-                                    <div><a class="navigationLink" href="/app/Annotation">Genome Annotation</a></div>
-                                    <div><a class="navigationLink" href="/app/ComprehensiveGenomeAnalysis">Comprehensive Genome Analysis <span style="font-style: italic;">(B)</span></a></div>
-                                    <div><a class="navigationLink" href="/app/Homology">BLAST</a></div>
-                                    <div><a class="navigationLink" href="/app/GenomeDistance">Similar Genome Finder</div>
+                                    <div><a class="navigationLink" href="">Cell Imaging</a></div>
+                                    <div><a class="navigationLink" href="">RNASeq</a></div>
+                                    <div><a class="navigationLink" href="">Variation</a></div>
                                 </div>
-                                <div class="menuHeader">Phylogenomics</div>
-                                <div class="menuItems">
-                                    <div><a class="navigationLink" href="/app/PhylogeneticTree">Bacterial Genome Tree</a></div>
-                                    <div><a class="navigationLink" href="/app/ViralGenomeTree">Viral Genome Tree</a></div>
-                                    <div><a class="navigationLink" href="/app/GeneTree">Gene/Protein Tree</a></div>
-                                </div>
-                                <div class="menuHeader">Protein Tools</div>
-                                <div class="menuItems">
-                                    <div><a class="navigationLink" href="/app/MSA">MSA and SNP Analysis</a></div>
-                                    <div><a class="navigationLink" href="/app/SeqComparison">Proteome Comparison</a></div>
-                                    <div><a class="navigationLink" href="/app/ComparativeSystems">Comparative Systems</a></div>
-                                </div>
-                            </div>
-
-                            <div style="vertical-align:top;width:250px;display:inline-block">
-                                <div class="menuHeader">Metagenomics</div>
-                                <div class="menuItems">
-                                    <div><a class="navigationLink" href="/app/TaxonomicClassification">Taxonomic Classification</a></div>
-                                    <div><a class="navigationLink" href="/app/MetagenomicBinning">Metagenomic Binning</a></div>
-                                    <div><a class="navigationLink" href="/app/MetagenomicReadMapping">Metagenomic Read Mapping</a></div>
-                                </div>
-                              <p></p>
-                              <div class="menuHeader">Viral Tools</div>
-                              <div class="menuItems">
-                                <div><a class="navigationLink" href="/app/ComprehensiveSARS2Analysis">SARS-CoV-2 Genome Analysis</a></div>
-                                <div><a class="navigationLink" href="/app/SARS2Wastewater">SARS-CoV-2 Wastewater Analysis</a></div>
-                                <div><a class="navigationLink" href="/app/SubspeciesClassification">Subspecies Classification</a></div>
-                              </div>
-                              <p></p>
-                              <div class="menuHeader">Outbreak Tracker</div>
-                              <div class="menuItems">
-                                <div><b><a class="navigationLink" href="/outbreaks/H5N1/#view_tab=overview">Influenza H5N1 2024</a></b></div>
-                                <div><b><a class="navigationLink" href="/outbreaks/SARSCoV2/#view_tab=overview">SARS-CoV-2</a></b></div>
-                              </div>
                             </div>
                         </div>
                     </div>
@@ -202,7 +80,7 @@
                                                 class="navigationLink" id="YourWorkspaceLink">Workspaces</a></div>
                                     <div id="YourWorkspaces"></div>
                                     <div><a class="navigationLink" href="/workspace/public">Public Workspaces</a></div>
-                                    <div><a class="navigationLink" href="/workspace/public/maage@bvbrc/MAAGE%20Workshop">MAAGE Workshop</a></div>
+                                    <div><a class="navigationLink" href="/workspace/public/maage@bvbrc/MAAGE%20Workshop">LDKB Workshop</a></div>
                                 </div>
                             </div>
                             <div style="vertical-align:top;display:inline-block" class="ShowWithAuth">
@@ -251,17 +129,16 @@
                     <span>ABOUT</span>
 
                     <div data-dojo-type="p3/widget/TooltipDialog">
-                        <div><a class="TopMenuLink" href="/about">About MAAGE</a></div>
+                        <div><a class="TopMenuLink" href="/about">About LDKB</a></div>
                         <div><a class="TopMenuLink" href="/team">Team</a></div>
-                        <div><a class="TopMenuLink" href="/advisory_board">Advisory Board</a></div>
                         <div><a class="DialogButton" rel="reportProblem:">Contact Us</a></div>
                         <div style="display: none;"><a class="TopMenuLink" href="https://www.bv-brc.org/docs/news/index.html" target="_blank">Announcements</a></div>
-                        <div style="display: none;"><a class="TopMenuLink" href="/brc-calendar">MAAGE Calendar</a></div>
+                        <div style="display: none;"><a class="TopMenuLink" href="/brc-calendar">LDKB Calendar</a></div>
                         <!-- <hr> -->
                         <div style="display: none;"><a class="TopMenuLink" href="/publications">Publications</a></div>
                         <div style="display: none;"><a class="TopMenuLink" href="/citation">Citation</a></div>
                         <div style="display: none;"><a class="TopMenuLink" href="/related-resources">Related Resources</a></div>
-                        <div style="display: none;"><a class="TopMenuLink navigationLinkOut" href="https://github.com/BV-BRC" target="_blank" rel="noopener">MAAGE GitHub</a></div>
+                        <div style="display: none;"><a class="TopMenuLink navigationLinkOut" href="https://github.com/BV-BRC" target="_blank" rel="noopener">LDKB GitHub</a></div>
                         <div style="display: none;"><a class="TopMenuLink" href="/privacy-policy">Privacy Policy</a></div>
                     </div>
                 </div>

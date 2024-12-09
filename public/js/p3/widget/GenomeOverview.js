@@ -5,7 +5,7 @@ define([
   '../util/PathJoin', './SelectionToGroup', './GenomeFeatureSummary', './DataItemFormatter',
   './ExternalItemFormatter', './AdvancedDownload', 'dijit/form/TextBox', 'dijit/form/Form', './Confirmation',
   './InputList', 'dijit/form/SimpleTextarea', 'dijit/form/DateTextBox', './MetaEditor',
-  '../DataAPI', './PermissionEditor', './ServicesTooltipDialog', 'dijit/popup'
+  '../DataAPI', './PermissionEditor', './ServicesTooltipDialog', 'dijit/popup', './ActionBar'
 ], function (
   declare, lang, on, xhr, Topic,
   domClass, domQuery, domStyle, Template, domConstruct,
@@ -13,7 +13,7 @@ define([
   PathJoin, SelectionToGroup, GenomeFeatureSummary, DataItemFormatter,
   ExternalItemFormatter, AdvancedDownload, TextBox, Form, Confirmation,
   InputList, TextArea, DateTextBox, MetaEditor,
-  DataAPI, PermissionEditor, ServicesTooltipDialog, popup
+  DataAPI, PermissionEditor, ServicesTooltipDialog, popup, ActionBar
 ) {
 
   return declare([WidgetBase, Templated, _WidgetsInTemplateMixin], {
@@ -24,7 +24,7 @@ define([
     genome: null,
     state: null,
     context: 'bacteria',
-    bacteriSummaryWidgets: ['apSummaryWidget', 'gfSummaryWidget', 'pfSummaryWidget', 'spgSummaryWidget'],
+    bacteriSummaryWidgets: ['gfSummaryWidget'],
     virusSummaryWidgets: ['gfSummaryWidget'],
     docsServiceURL: window.App.docsServiceURL,
     tutorialLink: 'quick_references/organisms_genome/overview.html',
@@ -52,14 +52,6 @@ define([
         domConstruct.place(domConstruct.toDom('Not available'), this.pubmedSummaryNode, 'first');
       }
     },
-    changeToVirusContext: function () {
-      domClass.add(this.pfSummaryWidget.domNode.parentNode, 'hidden');
-      domClass.add(this.spgSummaryWidget.domNode.parentNode, 'hidden');
-    },
-    changeToBacteriaContext: function () {
-      domClass.remove(this.pfSummaryWidget.domNode.parentNode, 'hidden');
-      domClass.remove(this.spgSummaryWidget.domNode.parentNode, 'hidden');
-    },
     _setGenomeAttr: function (genome) {
       if (this.genome && (this.genome.genome_id == genome.genome_id)) {
         // console.log("Genome ID Already Set")
@@ -71,6 +63,8 @@ define([
       this.createPubMed(genome);
       this.createExternalLinks(genome);
 
+      this.createSelectionActionBar();
+
       // context sensitive widget update
       const sumWidgets = (this.context === 'bacteria') ? this.bacteriSummaryWidgets : this.virusSummaryWidgets
       sumWidgets.forEach(function (w) {
@@ -80,6 +74,7 @@ define([
       }, this);
 
       // display/hide download button per public status
+      /*
       if (genome['public']) {
         domStyle.set(domQuery('div.ActionButtonWrapper.btnDownloadGenome')[0], 'display', 'inline-block');
       } else {
@@ -93,6 +88,13 @@ define([
       } else {
         domStyle.set(domQuery('div.ActionButtonWrapper.btnShareGenome')[0], 'display', 'none');
       }
+      */
+    },
+
+    createSelectionActionBar: function () {
+      this.selectionActionBarWidget.set('style', {
+        'height': this.columnSub.scrollHeight + 'px'
+      });
     },
 
     createSummary: function (genome) {
